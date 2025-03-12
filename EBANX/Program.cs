@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using EBANX.Data;
 using System.Text.Json.Serialization;
+using EBANX.Business;
+using EBANX.Data.DIRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,8 +50,8 @@ builder.Services.AddSwaggerGen(c => {
 });
 
 // Registrar Repositories e Services
-//DIBusiness.AddServices(builder.Services);
-//DIRepository.AddRepositories(builder.Services);
+DIBusiness.AddServices(builder.Services);
+DIRepository.AddRepositories(builder.Services);
 
 var app = builder.Build();
 

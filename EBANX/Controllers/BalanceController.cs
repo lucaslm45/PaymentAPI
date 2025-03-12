@@ -6,13 +6,12 @@ namespace EBANX.Controllers {
     [ApiController]
     [Route("balance")]
     [Produces("application/json")]
-    [Consumes("application/json")]
     [ProducesResponseType(200)]
     public class BalanceController : ControllerBase {
 
         protected readonly IBankService _service;
 
-        protected BalanceController(IBankService service) {
+        public BalanceController(IBankService service) {
             _service = service;
         }
 
