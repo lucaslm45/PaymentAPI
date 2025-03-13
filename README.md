@@ -1,1 +1,1 @@
-# EBANX_Project
+# PROJETO_GENERICO
