@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Projeto.Data;
-using System.Text.Json.Serialization;
 using Projeto.Business;
 using Projeto.Data.DIRepository;
 using Projeto.Data.Profiles;
@@ -22,11 +21,11 @@ builder.Services.AddCors(options => {
             .AllowAnyHeader());
 });
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options => {
-        // Remove ReferenceHandler.Preserve
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    });
+builder.Services.AddControllers();
+//.AddJsonOptions(options => {
+//    // Remove ReferenceHandler.Preserve
+//    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+//});
 
 //builder.Services.AddControllers()
 //    .AddJsonOptions(options => {
@@ -51,10 +50,10 @@ DIRepository.AddRepositories(builder.Services);
 
 var app = builder.Build();
 
-// Criar escopo para inicializar o banco
+// Escopo para inicializar o banco
 using (var scope = app.Services.CreateScope()) {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    context.Database.EnsureCreated(); // Apenas isso já cria o banco no arquivo
+    context.Database.EnsureCreated();
 }
 
 // Configure the HTTP request pipeline.
