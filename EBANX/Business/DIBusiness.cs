@@ -6,6 +6,7 @@ namespace EBANX.Business {
         public static void AddServices(IServiceCollection services) {
             // Registrar os servicos
             services.AddTransient<IBankService, BankService>();
+            services.AddTransient<IEventService, EventService>();
         }
     }
 }

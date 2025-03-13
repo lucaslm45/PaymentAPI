@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EBANX.Controllers {
     [ApiController]
     [Route("balance")]
-    [Produces("application/json")]
+    //[Produces("application/json")]
     [ProducesResponseType(200)]
     public class BalanceController : ControllerBase {
 

@@ -4,6 +4,7 @@ using EBANX.Data;
 using System.Text.Json.Serialization;
 using EBANX.Business;
 using EBANX.Data.DIRepository;
+using EBANX.Data.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Filename=:memory:")
 );
 
-//builder.Services.AddAutoMapper(typeof(AlimentoProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(CestaAlimentoProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(InstituicaoProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(LoteAlimentoProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(LocalizacaoProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountProfile).Assembly);
 
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAllOrigins",

@@ -6,6 +6,8 @@ namespace EBANX.Data.DIRepository {
         public static void AddRepositories(IServiceCollection services) {
             // Registrar os repositorio
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
         }
     }
 }
