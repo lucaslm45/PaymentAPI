@@ -12,12 +12,11 @@ namespace EBANX.Data.Repositories {
             _dbSet = _context.Set<AccountEntity>();
         }
         public async Task<AccountEntity> GetById(string accountId) {
-            return await _context.Accounts.FindAsync(accountId);
+            return await _dbSet.FindAsync(accountId);
         }
         public async Task<AccountEntity> Create(AccountEntity entity) {
-            _dbSet.Update(entity);
+            await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
-
             return entity;
         }
 

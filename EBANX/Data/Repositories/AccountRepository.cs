@@ -13,7 +13,7 @@ namespace EBANX.Data.Repositories {
         }
 
         public async Task<AccountEntity> GetById(string id) {
-            return await _context.Accounts.FindAsync(id);
+            return await _dbSet.FindAsync(id);
         }
     }
 }

@@ -8,9 +8,8 @@ using EBANX.Data.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar Entity Framework com SQLite em memória
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Filename=:memory:")
+    options.UseSqlite("Filename=EBANX.db")
 );
 
 builder.Services.AddAutoMapper(typeof(AccountProfile).Assembly);
@@ -55,8 +54,7 @@ var app = builder.Build();
 // Criar escopo para inicializar o banco
 using (var scope = app.Services.CreateScope()) {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    context.Database.OpenConnection(); // Necessário para SQLite em memória
-    context.Database.EnsureCreated();  // Criar tabelas temporárias
+    context.Database.EnsureCreated(); // Apenas isso já cria o banco no arquivo
 }
 
 // Configure the HTTP request pipeline.

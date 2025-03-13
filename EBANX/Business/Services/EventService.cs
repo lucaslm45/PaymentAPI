@@ -36,8 +36,8 @@ namespace EBANX.Business.Services {
                         throw new Exception();
                 }
             }
-            catch (Exception) {
-                return new NotFoundObjectResult(0);
+            catch (Exception ex) {
+                return new NotFoundObjectResult(ex.Message);
             }
         }
         // Método auxiliar para conversão segura do enum

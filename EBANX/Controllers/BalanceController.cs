@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace EBANX.Controllers {
     [ApiController]
     [Route("balance")]
-    //[Produces("application/json")]
+    [Produces("application/json")]
     [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     public class BalanceController : ControllerBase {
 
         protected readonly IBankService _service;
@@ -16,7 +17,6 @@ namespace EBANX.Controllers {
         }
 
         [HttpGet]
-        [ProducesResponseType(404)]
         public virtual async Task<IActionResult> Balance([FromQuery, Required] string account_id) {
             return await _service.Balance(account_id);
         }

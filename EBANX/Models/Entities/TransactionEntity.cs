@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EBANX.Models.Entities {
     public class TransactionEntity {
+        [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
 
         public string? OriginId { get; set; }  // Pode ser nulo em caso de depósito
