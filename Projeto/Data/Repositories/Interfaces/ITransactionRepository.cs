@@ -1,6 +1,4 @@
 ﻿using Projeto.Models.Entities;
-using System;
-using System.Threading.Tasks;
 
 namespace Projeto.Data.Repositories.Interfaces {
     /// <summary>

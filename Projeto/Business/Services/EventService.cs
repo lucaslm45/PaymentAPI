@@ -32,6 +32,9 @@ namespace Projeto.Business.Services {
         /// <returns>Retorna um <see cref="IActionResult"/> com o resultado da operação.</returns>
         public async Task<IActionResult> ProcessEvent(EventDto eventDto) {
             try {
+                if (eventDto.Amount <= 0)
+                    throw new Exception("Valor incorreto.");
+
                 var eventType = GetEventType(eventDto.Type);
                 if (eventType is null)
                     throw new Exception("Tipo de evento inválido.");
