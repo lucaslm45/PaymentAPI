@@ -1,10 +1,22 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projeto.Models.DTOs {
+    /// <summary>
+    /// DTO que representa os detalhes de uma transferência bancária.
+    /// </summary>
     [SwaggerSchema(Title = "Transfer")]
-
     public class TransferDto {
-        public AccountDto Origin { get; set; }
-        public AccountDto Destination { get; set; }
+        /// <summary>
+        /// Conta de origem da transferência.
+        /// </summary>
+        [Required]
+        public required AccountDto Origin { get; set; }
+
+        /// <summary>
+        /// Conta de destino da transferência.
+        /// </summary>
+        [Required]
+        public required AccountDto Destination { get; set; }
     }
 }

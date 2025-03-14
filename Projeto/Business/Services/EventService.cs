@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Projeto.Business.Services {
     public class EventService : IEventService {
 
-        private readonly IEventRepository _repository;
+        private readonly IAccountRepository _repository;
         private readonly ITransactionRepository _transactionRepository;
         private readonly IMapper _mapper;
 
@@ -19,7 +19,7 @@ namespace Projeto.Business.Services {
         /// <param name="repository">Repositório de eventos para acesso aos dados das contas.</param>
         /// <param name="transactionRepository">Repositório de transações para registrar movimentações financeiras.</param>
         /// <param name="mapper">Mapper para conversão entre entidades e DTOs.</param>
-        public EventService(IEventRepository repository, ITransactionRepository transactionRepository, IMapper mapper) {
+        public EventService(IAccountRepository repository, ITransactionRepository transactionRepository, IMapper mapper) {
             _repository = repository;
             _transactionRepository = transactionRepository;
             _mapper = mapper;

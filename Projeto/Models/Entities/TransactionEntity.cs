@@ -3,25 +3,53 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto.Models.Entities {
+    /// <summary>
+    /// Representa uma transação bancária, como depósito, saque ou transferência.
+    /// </summary>
     public class TransactionEntity {
+        /// <summary>
+        /// Identificador único da transação.
+        /// </summary>
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        public string? OriginId { get; set; }  // Pode ser nulo em caso de depósito
-        public string? DestinationId { get; set; }  // Pode ser nulo em caso de saque
+        /// <summary>
+        /// Identificador da conta de origem. Pode ser nulo no caso de depósito.
+        /// </summary>
+        public string? OriginId { get; set; }
 
+        /// <summary>
+        /// Identificador da conta de destino. Pode ser nulo no caso de saque.
+        /// </summary>
+        public string? DestinationId { get; set; }
+
+        /// <summary>
+        /// Valor da transação.
+        /// </summary>
         [Required]
-        public decimal Amount { get; set; }
+        public required decimal Amount { get; set; }
 
+        /// <summary>
+        /// Tipo da transação (Depósito, Saque ou Transferência).
+        /// </summary>
         [Required]
-        public ETypeEvent Type { get; set; }  // Define se é deposit, saque ou transfer
+        public required ETypeEvent Type { get; set; }
 
+        /// <summary>
+        /// Data e hora em que a transação foi criada.
+        /// </summary>
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Relações com contas bancárias
+        // Relações com as entidades de contas bancárias
+        /// <summary>
+        /// Conta de origem da transação, caso haja.
+        /// </summary>
         [ForeignKey("OriginId")]
         public AccountEntity? Origin { get; set; }
 
+        /// <summary>
+        /// Conta de destino da transação, caso haja.
+        /// </summary>
         [ForeignKey("DestinationId")]
         public AccountEntity? Destination { get; set; }
     }
