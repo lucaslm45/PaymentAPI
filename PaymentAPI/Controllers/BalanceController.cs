@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Controllers {
     /// <summary>
-    /// Controlador responsável pela implementação do endpoint associado à consulta de saldo em conta.
+    /// Controller responsible for implementing the endpoint associated with the account balance query.
     /// </summary>
     [ApiController]
     [Route("balance")]
@@ -16,24 +16,24 @@ namespace PaymentAPI.Controllers {
         protected readonly IBankService _service;
 
         /// <summary>
-        /// Cria os objetos necessários para o controlador, injetando o serviço de operações bancárias.
+        /// Creates the necessary objects for the controller, injecting the banking operations service.
         /// </summary>
-        /// <param name="service">O serviço que lida com as operações bancárias, como consulta de saldo.</param>
+        /// <param name="service">The service that handles banking operations, such as balance inquiries.</param>
         public BalanceController(IBankService service) {
             _service = service;
         }
 
         /// <summary>
-        /// Aciona o serviço para realizar a consulta do saldo da conta bancária.
+        /// Triggers the service to perform the bank account balance inquiry.
         /// </summary>
-        /// <param name="account_id">O identificador único da conta bancária para a qual o saldo será consultado.</param>
+        /// <param name="account_id">The unique identifier of the bank account for which the balance will be queried.</param>
         /// <returns>
-        /// Retorna um <see cref="IActionResult"/> com o saldo da conta ou um erro caso a conta não seja encontrada.
+        /// Returns an <see cref="IActionResult"/> with the account balance or an error if the account is not found.
         /// </returns>
-        /// <response code="200">Saldo consultado com sucesso.</response>
-        /// <response code="404">Conta não encontrada ou identificador inválido fornecido.</response>
+        /// <response code="200">Balance successfully queried.</response>
+        /// <response code="404">Account not found or invalid identifier provided.</response>
         [HttpGet]
-        public virtual async Task<IActionResult> Balance([FromQuery, Required] string account_id) {
+        public virtual async Task<IActionResult> Balance([FromQuery, Required] int account_id) {
             return await _service.Balance(account_id);
         }
     }

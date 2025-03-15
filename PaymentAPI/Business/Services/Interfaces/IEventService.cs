@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PaymentAPI.Business.Services.Interfaces {
     /// <summary>
-    /// Define a interface para o serviço de processamento de eventos financeiros.
+    /// Defines the interface for the financial event processing service.
     /// </summary>
     public interface IEventService {
         /// <summary>
-        /// Processa um evento financeiro com base no tipo de transação informada.
+        /// Processes a financial event based on the specified transaction type.
         /// </summary>
-        /// <param name="eventDto">Objeto contendo os dados do evento a ser processado.</param>
+        /// <param name="eventDto">Object containing the event data to be processed.</param>
         /// <returns>
-        /// Um <see cref="IActionResult"/> representando o resultado da operação.
+        /// An <see cref="IActionResult"/> representing the result of the operation.
         /// </returns>
         Task<IActionResult> ProcessEvent(EventDto eventDto);
     }

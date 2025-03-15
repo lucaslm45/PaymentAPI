@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Models.DTOs {
     /// <summary>
-    /// DTO que representa os detalhes de uma transferência bancária.
+    /// DTO representing the details of a bank transfer.
     /// </summary>
     [SwaggerSchema(Title = "Transfer")]
     public class TransferDto {
         /// <summary>
-        /// Conta de origem da transferência.
+        /// The origin account of the transfer.
         /// </summary>
         [Required]
         public required AccountDto Origin { get; set; }
 
         /// <summary>
-        /// Conta de destino da transferência.
+        /// The destination account of the transfer.
         /// </summary>
         [Required]
         public required AccountDto Destination { get; set; }

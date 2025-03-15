@@ -3,24 +3,24 @@ using System.Text.Json.Serialization;
 
 namespace PaymentAPI.Models.Enums {
     /// <summary>
-    /// Enum que representa os diferentes tipos de eventos de transação bancária.
+    /// Enum that represents the different types of banking transaction events.
     /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]  // Converte o enum para e de strings durante a serialização/deserialização JSON
+    [JsonConverter(typeof(JsonStringEnumConverter))]  // Converts the enum to and from strings during JSON serialization/deserialization
     public enum ETypeEvent {
         /// <summary>
-        /// Representa uma transação de depósito.
+        /// Represents a deposit transaction.
         /// </summary>
-        [EnumMember(Value = "deposit")]  // Define o valor correspondente no JSON
+        [EnumMember(Value = "deposit")]  // Defines the corresponding value in JSON
         Deposit,
 
         /// <summary>
-        /// Representa uma transação de saque.
+        /// Represents a withdrawal transaction.
         /// </summary>
         [EnumMember(Value = "withdraw")]
         Withdraw,
 
         /// <summary>
-        /// Representa uma transação de transferência entre contas.
+        /// Represents a transfer transaction between accounts.
         /// </summary>
         [EnumMember(Value = "transfer")]
         Transfer

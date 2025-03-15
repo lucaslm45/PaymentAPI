@@ -4,35 +4,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PaymentAPI.Data.Repositories {
     /// <summary>
-    /// Repositório responsável pelas operações no banco de dados para a entidade TransactionEntity.
+    /// Repository responsible for database operations for the <see cref="TransactionEntity"/>.
     /// </summary>
     public class TransactionRepository : ITransactionRepository {
         private readonly AppDbContext _context;
         private readonly DbSet<TransactionEntity> _dbSet;
 
         /// <summary>
-        /// Construtor da classe TransactionRepository.
+        /// Constructor for the TransactionRepository class.
         /// </summary>
-        /// <param name="context">Contexto do banco de dados.</param>
+        /// <param name="context">The database context.</param>
         public TransactionRepository(AppDbContext context) {
             _context = context;
             _dbSet = _context.Set<TransactionEntity>();
         }
 
         /// <summary>
-        /// Obtém uma transação pelo ID.
+        /// Retrieves a transaction by its ID.
         /// </summary>
-        /// <param name="id">O identificador único da transação.</param>
-        /// <returns>Retorna a transação se encontrada, caso contrário, null.</returns>
+        /// <param name="id">The unique identifier of the transaction.</param>
+        /// <returns>Returns the transaction if found, otherwise, null.</returns>
         public async Task<TransactionEntity> GetById(Guid id) {
             return await _dbSet.FindAsync(id);
         }
 
         /// <summary>
-        /// Cria uma nova transação no banco de dados.
+        /// Creates a new transaction in the database.
         /// </summary>
-        /// <param name="entity">A entidade da transação a ser criada.</param>
-        /// <returns>Retorna a transação criada.</returns>
+        /// <param name="entity">The transaction entity to be created.</param>
+        /// <returns>Returns the created transaction.</returns>
         public async Task<TransactionEntity> Create(TransactionEntity entity) {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -41,10 +41,10 @@ namespace PaymentAPI.Data.Repositories {
         }
 
         /// <summary>
-        /// Atualiza uma transação existente no banco de dados.
+        /// Updates an existing transaction in the database.
         /// </summary>
-        /// <param name="entity">A entidade da transação a ser atualizada.</param>
-        /// <returns>Retorna a transação atualizada.</returns>
+        /// <param name="entity">The transaction entity to be updated.</param>
+        /// <returns>Returns the updated transaction.</returns>
         public async Task<TransactionEntity> Update(TransactionEntity entity) {
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();

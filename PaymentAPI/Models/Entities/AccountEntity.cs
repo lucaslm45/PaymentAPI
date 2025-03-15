@@ -2,23 +2,23 @@
 
 namespace PaymentAPI.Models.Entities {
     /// <summary>
-    /// Representa uma conta bancária na entidade de dados.
+    /// Represents a bank account in the data entity.
     /// </summary>
     public class AccountEntity {
         /// <summary>
-        /// Identificador único da conta bancária.
+        /// Unique identifier for the bank account.
         /// </summary>
         [Key]
-        public required string Id { get; set; }
+        public required int Id { get; set; }
 
         /// <summary>
-        /// Saldo da conta bancária. O valor padrão é 0.
+        /// The balance of the bank account. The default value is 0.
         /// </summary>
         public decimal Balance { get; set; } = 0;
 
         /// <summary>
-        /// Coleção de transações associadas a esta conta.
+        /// Collection of transactions associated with this account.
         /// </summary>
-        public ICollection<TransactionEntity> Transactions { get; set; } = new List<TransactionEntity>();
+        public ICollection<AccountTransactionEntity> AccountTransaction { get; set; } = new List<AccountTransactionEntity>();
     }
 }

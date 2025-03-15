@@ -4,28 +4,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PaymentAPI.Business.Services {
     /// <summary>
-    /// Servico responsavel por operacoes bancarias, como consulta de saldo.
+    /// Service responsible for banking operations, such as balance inquiry.
     /// </summary>
     public class BankService : IBankService {
         private readonly IAccountRepository _repository;
 
         /// <summary>
-        /// Inicializa uma nova instancia do <see cref="BankService"/>.
+        /// Initializes a new instance of <see cref="BankService"/>.
         /// </summary>
-        /// <param name="repository">Repositorio responsavel pelo acesso aos dados das contas.</param>
+        /// <param name="repository">Repository responsible for accessing account data.</param>
         public BankService(IAccountRepository repository) {
             _repository = repository;
         }
 
         /// <summary>
-        /// Consulta o saldo de uma conta bancaria com base no ID fornecido.
+        /// Retrieves the balance of a bank account based on the provided ID.
         /// </summary>
-        /// <param name="accountId">O identificador unico da conta bancaria.</param>
+        /// <param name="accountId">The unique identifier of the bank account.</param>
         /// <returns>
-        /// Um <see cref="IActionResult"/> contendo o saldo da conta se encontrada, 
-        /// ou um erro 404 com saldo zero caso a conta nao exista.
+        /// An <see cref="IActionResult"/> containing the account balance if found, 
+        /// or a 404 error with a zero balance if the account does not exist.
         /// </returns>
-        public async Task<IActionResult> Balance(string accountId) {
+        public async Task<IActionResult> Balance(int accountId) {
             try {
                 var account = await _repository.GetById(accountId);
                 if (account == null)

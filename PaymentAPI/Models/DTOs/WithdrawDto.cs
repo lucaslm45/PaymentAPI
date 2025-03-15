@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Models.DTOs {
     /// <summary>
-    /// DTO que representa os detalhes de um saque bancário.
+    /// DTO representing the details of a bank withdrawal.
     /// </summary>
     [SwaggerSchema(Title = "Withdraw")]
     public class WithdrawDto {
         /// <summary>
-        /// Conta de origem do saque.
+        /// The origin account of the withdrawal.
         /// </summary>
         [Required]
         public required AccountDto Origin { get; set; }

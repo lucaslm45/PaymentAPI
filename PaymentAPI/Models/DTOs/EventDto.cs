@@ -3,28 +3,28 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Models.DTOs {
     /// <summary>
-    /// DTO que representa os detalhes de um evento bancário (ex: depósito, saque, transferência).
+    /// DTO that represents the details of a banking event (e.g., deposit, withdrawal, transfer).
     /// </summary>
     [SwaggerSchema(Title = "Event")]
     public class EventDto {
         /// <summary>
-        /// Tipo de evento (ex: "Deposit", "Withdraw", "Transfer").
+        /// Event type (e.g., "Deposit", "Withdraw", "Transfer").
         /// </summary>
         [Required]
         public required string Type { get; set; }
 
         /// <summary>
-        /// Conta de origem (aplicável para transferência ou saque).
+        /// Source account (applicable for transfer or withdraw).
         /// </summary>
-        public string? Origin { get; set; }
+        public int Origin { get; set; } = 0;
 
         /// <summary>
-        /// Conta de destino (aplicável para depósito ou transferência).
+        /// Destination account (applicable for deposit or transfer).
         /// </summary>
-        public string? Destination { get; set; }
+        public int Destination { get; set; } = 0;
 
         /// <summary>
-        /// Quantidade envolvida no evento (ex: valor do depósito, saque, ou transferência).
+        /// Amount involved in the event (e.g., deposit, withdraw, or transfer amount).
         /// </summary>
         [Required]
         public required decimal Amount { get; set; }

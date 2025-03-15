@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Models.DTOs {
     /// <summary>
-    /// DTO que representa uma transação de depósito.
+    /// DTO representing a deposit transaction.
     /// </summary>
     [SwaggerSchema(Title = "Deposit")]
     public class DepositDto {
         /// <summary>
-        /// Conta de destino onde o valor será depositado.
+        /// Destination account where the amount will be deposited.
         /// </summary>
         [Required]
         public required AccountDto Destination { get; set; }

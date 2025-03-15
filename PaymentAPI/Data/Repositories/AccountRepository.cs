@@ -4,35 +4,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PaymentAPI.Data.Repositories {
     /// <summary>
-    /// Repositório responsável por gerenciar operações no banco de dados para a entidade AccountEntity.
+    /// Repository responsible for managing database operations for the <see cref="AccountEntity"/>.
     /// </summary>
     public class AccountRepository : IAccountRepository {
         private readonly AppDbContext _context;
         private readonly DbSet<AccountEntity> _dbSet;
 
         /// <summary>
-        /// Inicializa uma nova instância de AccountRepository com o contexto do banco de dados.
+        /// Initializes a new instance of AccountRepository with the database context.
         /// </summary>
-        /// <param name="context">O contexto do banco de dados.</param>
+        /// <param name="context">The database context.</param>
         public AccountRepository(AppDbContext context) {
             _context = context;
             _dbSet = _context.Set<AccountEntity>();
         }
 
         /// <summary>
-        /// Obtém uma conta pelo ID.
+        /// Retrieves an account by its ID.
         /// </summary>
-        /// <param name="accountId">O identificador único da conta.</param>
-        /// <returns>Retorna a conta se encontrada, caso contrário, null.</returns>
-        public async Task<AccountEntity?> GetById(string accountId) {
+        /// <param name="accountId">The unique identifier of the account.</param>
+        /// <returns>Returns the account if found, otherwise, null.</returns>
+        public async Task<AccountEntity?> GetById(int accountId) {
             return await _dbSet.FindAsync(accountId);
         }
 
         /// <summary>
-        /// Cria uma nova conta no banco de dados.
+        /// Creates a new account in the database.
         /// </summary>
-        /// <param name="entity">A entidade da conta a ser criada.</param>
-        /// <returns>Retorna a conta criada.</returns>
+        /// <param name="entity">The account entity to be created.</param>
+        /// <returns>Returns the created account.</returns>
         public async Task<AccountEntity> Create(AccountEntity entity) {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -40,10 +40,10 @@ namespace PaymentAPI.Data.Repositories {
         }
 
         /// <summary>
-        /// Atualiza uma conta existente no banco de dados.
+        /// Updates an existing account in the database.
         /// </summary>
-        /// <param name="entity">A entidade da conta a ser atualizada.</param>
-        /// <returns>Retorna a conta atualizada.</returns>
+        /// <param name="entity">The account entity to be updated.</param>
+        /// <returns>Returns the updated account.</returns>
         public async Task<AccountEntity> Update(AccountEntity entity) {
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();

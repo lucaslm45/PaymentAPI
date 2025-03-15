@@ -2,16 +2,16 @@
 
 namespace PaymentAPI.Business.Services.Interfaces {
     /// <summary>
-    /// Interface responsável por definir operações bancárias essenciais, como consulta de saldo.
+    /// Interface responsible for defining essential banking operations, such as balance inquiries.
     /// </summary>
     public interface IBankService {
         /// <summary>
-        /// Obtém o saldo de uma conta bancária com base no ID fornecido.
+        /// Retrieves the balance of a bank account based on the provided ID.
         /// </summary>
-        /// <param name="accountId">O identificador único da conta bancária.</param>
+        /// <param name="accountId">The unique identifier of the bank account.</param>
         /// <returns>
-        /// Um <see cref="IActionResult"/> representando o resultado da operação.
+        /// An <see cref="IActionResult"/> representing the result of the operation.
         /// </returns>
-        Task<IActionResult> Balance(string accountId);
+        Task<IActionResult> Balance(int accountId);
     }
 }

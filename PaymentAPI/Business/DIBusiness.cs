@@ -4,22 +4,22 @@ using PaymentAPI.Business.Services.Interfaces;
 namespace PaymentAPI.Business {
     public static class DIBusiness {
         /// <summary>
-        /// Realiza a injeção de dependência para os serviços necessários na aplicação.
+        /// Performs dependency injection for the services required in the application.
         /// </summary>
-        /// <param name="services">Coleção de serviços onde as dependências serão registradas.</param>
+        /// <param name="services">The collection of services where dependencies will be registered.</param>
         /// <remarks>
-        /// Este método configura os serviços da aplicação para que possam ser injetados nas classes que 
-        /// necessitam deles. Utiliza o ciclo de vida <see cref="Transient"/> para os serviços, o que significa 
-        /// que uma nova instância será criada a cada vez que o serviço for solicitado.
+        /// This method configures the application services so that they can be injected into classes that
+        /// require them. It uses the Transient lifecycle for the services, which means
+        /// a new instance will be created each time the service is requested.
         /// </remarks>
         public static void AddServices(IServiceCollection services) {
-            // Registra o serviço de operações bancárias
+            // Registers the bank operation service
             services.AddTransient<IBankService, BankService>();
 
-            // Registra o serviço de processamento de eventos
+            // Registers the event processing service
             services.AddTransient<IEventService, EventService>();
 
-            // Registra o serviço de reset do banco de dados
+            // Registers the database reset service
             services.AddTransient<IResetService, ResetService>();
         }
     }

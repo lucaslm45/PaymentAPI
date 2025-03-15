@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PaymentAPI.Controllers {
     /// <summary>
-    /// Controlador responsável pela implementação do endpoint que lida com a realização de transações financeiras.
+    /// Controller responsible for implementing the endpoint that handles financial transactions.
     /// </summary>
     [ApiController]
     [Route("event")]
@@ -14,27 +14,27 @@ namespace PaymentAPI.Controllers {
         private readonly IEventService _service;
 
         /// <summary>
-        /// Cria os objetos necessários para o controlador, injetando o serviço que gerencia transações financeiras.
+        /// Creates the necessary objects for the controller, injecting the service that manages financial transactions.
         /// </summary>
-        /// <param name="service">O serviço responsável por processar as transações do tipo Depósito, Saque e Transferência.</param>
+        /// <param name="service">The service responsible for processing transactions such as Deposit, Withdrawal, and Transfer.</param>
         public EventController(IEventService service) {
             _service = service;
         }
 
         /// <summary>
-        /// Aciona o serviço para realizar transações do tipo Depósito, Saque ou Transferência.
+        /// Triggers the service to perform transactions of type Deposit, Withdrawal, or Transfer.
         /// </summary>
-        /// <param name="eventDto">O objeto que contém os dados necessários para a transação, como o tipo de evento, valor e contas envolvidas.</param>
+        /// <param name="eventDto">The object containing the necessary data for the transaction, such as event type, value, and involved accounts.</param>
         /// <returns>
-        /// Retorna um <see cref="IActionResult"/> com o status da transação realizada.
+        /// Returns an <see cref="IActionResult"/> with the status of the transaction.
         /// </returns>
-        /// <response code="201">Transação concluída com sucesso.</response>
-        /// <response code="404">Conta não encontrada ou outros erros relacionados à transação.</response>
+        /// <response code="201">Transaction completed successfully.</response>
+        /// <response code="404">Account not found or other errors related to the transaction.</response>
         [HttpPost]
-        [ProducesResponseType(typeof(DepositDto), 201)]  // Retorno de sucesso para o tipo Depósito
-        [ProducesResponseType(typeof(WithdrawDto), 201)] // Retorno de sucesso para o tipo Saque
-        [ProducesResponseType(typeof(TransferDto), 201)] // Retorno de sucesso para o tipo Transferência
-        [ProducesResponseType(404)] // Caso a conta não seja encontrada ou erro relacionado
+        [ProducesResponseType(typeof(DepositDto), 201)]  // Success response for Deposit type
+        [ProducesResponseType(typeof(WithdrawDto), 201)] // Success response for Withdraw type
+        [ProducesResponseType(typeof(TransferDto), 201)] // Success response for Transfer type
+        [ProducesResponseType(404)] // In case the account is not found or another related error occurs
         public async Task<IActionResult> ProcessEvent([FromBody, Required] EventDto eventDto) {
             return await _service.ProcessEvent(eventDto);
         }

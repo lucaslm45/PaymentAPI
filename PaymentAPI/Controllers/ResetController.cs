@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PaymentAPI.Controllers {
     /// <summary>
-    /// Controlador responsável pela implementação do endpoint para realizar a limpeza (reset) do banco de dados.
+    /// Controller responsible for implementing the endpoint to perform the database reset (cleaning).
     /// </summary>
     [ApiController]
     [Route("reset")]
@@ -13,21 +13,21 @@ namespace PaymentAPI.Controllers {
         private readonly IResetService _service;
 
         /// <summary>
-        /// Construtor que injeta o serviço responsável por realizar a limpeza do banco de dados.
+        /// Constructor that injects the service responsible for performing the database reset.
         /// </summary>
-        /// <param name="service">Serviço que realiza a operação de reset do banco de dados.</param>
+        /// <param name="service">Service that performs the database reset operation.</param>
         public ResetController(IResetService service) {
             _service = service;
         }
 
         /// <summary>
-        /// Aciona o serviço para realizar a limpeza (reset) do banco de dados.
-        /// A operação de reset exclui todos os dados e recria as tabelas do banco de dados.
+        /// Triggers the service to perform the database reset (cleaning).
+        /// The reset operation deletes all data and recreates the database tables.
         /// </summary>
         /// <returns>
-        /// Retorna um <see cref="IResult"/> indicando o status da operação de reset.
+        /// Returns an <see cref="IResult"/> indicating the status of the reset operation.
         /// </returns>
-        /// <response code="200">Limpeza do banco de dados concluída com sucesso.</response>
+        /// <response code="200">Database reset completed successfully.</response>
         [HttpPost]
         [ProducesResponseType(200)]
         public IResult Reset() {

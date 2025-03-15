@@ -1,13 +1,13 @@
 ﻿namespace PaymentAPI.Business.Services.Interfaces {
     /// <summary>
-    /// Interface responsável por definir operações para resetar o banco de dados.
+    /// Interface responsible for defining operations to reset the database.
     /// </summary>
     public interface IResetService {
         /// <summary>
-        /// Reseta o banco de dados, excluindo e recriando as tabelas.
+        /// Resets the database by deleting and recreating the tables.
         /// </summary>
         /// <returns>
-        /// Um <see cref="IResult"/> representando o resultado da operação.
+        /// An <see cref="IResult"/> representing the result of the operation.
         /// </returns>
         IResult Reset();
     }

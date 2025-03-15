@@ -2,73 +2,73 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PaymentAPI.Data;
 using PaymentAPI.Business;
-using PaymentAPI.Data.DIRepository;
 using PaymentAPI.Data.Profiles;
-using System.Reflection; // Adicionado para usar Assembly
+using System.Reflection;
+using PaymentAPI.Data.Repositories.DIRepository; // Added to use Assembly
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do DbContext com SQLite
+// Configuration of DbContext with SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Filename=Database.db")  // Configura o banco SQLite
+    options.UseSqlite("Filename=Database.db")  // Configures the SQLite database
 );
 
-// Configuração do AutoMapper para mapear DTOs para entidades e vice-versa
+// Configuration of AutoMapper to map DTOs to entities and vice versa
 builder.Services.AddAutoMapper(typeof(AccountProfile).Assembly);
 
-// Configuração do CORS para permitir todas as origens
+// Configuration of CORS to allow all origins
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAllOrigins", builder => builder
-        .AllowAnyOrigin()  // Permite qualquer origem
-        .AllowAnyMethod()  // Permite qualquer método HTTP (GET, POST, etc.)
-        .AllowAnyHeader());  // Permite qualquer cabeçalho HTTP
+        .AllowAnyOrigin()  // Allows any origin
+        .AllowAnyMethod()  // Allows any HTTP method (GET, POST, etc.)
+        .AllowAnyHeader());  // Allows any HTTP header
 });
 
-// Configuração dos controladores
+// Configuration of controllers
 builder.Services.AddControllers();
 
-// Configuração do Swagger (para documentação da API)
+// Configuration of Swagger (for API documentation)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new OpenApiInfo {
         Title = "Payment API",
         Version = "v1"
     });
-    // Se precisar incluir comentários XML no Swagger (útil para documentação de métodos)
+    // If you need to include XML comments in Swagger (useful for documenting methods)
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
-    c.EnableAnnotations();  // Habilita o uso de anotações no Swagger
+    c.EnableAnnotations();  // Enables the use of annotations in Swagger
 });
 
-// Registrar os Repositories e Services para injeção de dependência
-DIBusiness.AddServices(builder.Services);  // Registra os serviços da API
-DIRepository.AddRepositories(builder.Services);  // Registra os repositórios
+// Register Repositories and Services for dependency injection
+DIBusiness.AddServices(builder.Services);  // Registers the API services
+DIRepository.AddRepositories(builder.Services);  // Registers the repositories
 
 var app = builder.Build();
 
-// Escopo para inicializar o banco de dados (cria o banco se ele não existir)
+// Scope to initialize the database (creates the database if it doesn't exist)
 using (var scope = app.Services.CreateScope()) {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    context.Database.EnsureCreated();  // Cria o banco de dados se não existir
+    context.Database.EnsureCreated();  // Creates the database if it doesn't exist
 }
 
-// Configuração do pipeline HTTP
+// HTTP pipeline configuration
 if (app.Environment.IsDevelopment()) {
-    // Ativa o Swagger apenas em ambiente de desenvolvimento
+    // Enables Swagger only in the development environment
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();  // Redireciona automaticamente para HTTPS
+app.UseHttpsRedirection();  // Automatically redirects to HTTPS
 
-// Ativa o CORS com a política definida anteriormente
+// Enables CORS with the previously defined policy
 app.UseCors("AllowAllOrigins");
 
-app.UseRouting();  // Ativa o roteamento de requisições
+app.UseRouting();  // Enables request routing
 
-app.UseAuthorization();  // Habilita a autorização de usuários
+app.UseAuthorization();  // Enables user authorization
 
-app.MapControllers();  // Mapeia os controladores para as rotas
+app.MapControllers();  // Maps controllers to routes
 
-app.Run();  // Inicia a aplicação
+app.Run();  // Starts the application

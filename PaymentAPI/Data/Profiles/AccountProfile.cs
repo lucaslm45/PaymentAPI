@@ -4,11 +4,11 @@ using PaymentAPI.Models.Entities;
 
 namespace PaymentAPI.Data.Profiles {
     /// <summary>
-    /// Perfil de mapeamento entre AccountDto e AccountEntity.
+    /// Mapping profile between AccountDto and AccountEntity.
     /// </summary>
     public class AccountProfile : Profile {
         public AccountProfile() {
-            // Mapeamento bidirecional entre AccountDto e AccountEntity
+            // Bidirectional mapping between AccountDto and AccountEntity
             CreateMap<AccountDto, AccountEntity>().ReverseMap();
         }
     }
