@@ -24,9 +24,9 @@ namespace PaymentAPI.Data.Repositories {
         /// </summary>
         /// <param name="id">The unique identifier of the account transaction.</param>
         /// <returns>Returns the account transaction if found, otherwise, null.</returns>
-        public async Task<AccountTransactionEntity> GetById(Guid id) {
-            return await _dbSet.FindAsync(id);
-        }
+        //public async Task<AccountTransactionEntity> GetById(Guid id) {
+        //    return await _dbSet.FindAsync(id);
+        //}
 
         /// <summary>
         /// Creates a new account transaction in the database.

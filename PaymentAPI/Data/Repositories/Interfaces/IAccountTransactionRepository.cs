@@ -17,7 +17,7 @@ namespace PaymentAPI.Data.Repositories.Interfaces {
         /// </summary>
         /// <param name="id">The unique identifier of the transaction.</param>
         /// <returns>Returns the transaction if found, otherwise, null.</returns>
-        Task<AccountTransactionEntity> GetById(Guid id);
+        //Task<AccountTransactionEntity> GetById(Guid id);
 
         /// <summary>
         /// Updates an existing transaction in the database.
