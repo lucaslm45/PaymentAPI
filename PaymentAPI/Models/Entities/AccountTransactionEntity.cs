@@ -4,12 +4,6 @@ using System.ComponentModel.DataAnnotations;
 namespace PaymentAPI.Models.Entities {
     public class AccountTransactionEntity {
         /// <summary>
-        /// Unique identifier.
-        /// </summary>
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
-        /// <summary>
         /// Account identifier.
         /// </summary>
         [Required]
